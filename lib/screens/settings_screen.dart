@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../theme_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -52,6 +54,13 @@ class SettingsScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/details');
               },
               child: const Text('Go to Details Screen'),
+            ),
+            SwitchListTile(
+              title: const Text('Dark Mode'),
+              value: Provider.of<ThemeProvider>(context).isDarkMode,
+              onChanged: (bool value) {
+                Provider.of<ThemeProvider>(context, listen: false).toggleTheme(value);
+              },
             ),
           ],
         ),
