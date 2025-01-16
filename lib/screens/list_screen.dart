@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import '../services/movie_service.dart';
 
-class ListScreen extends StatelessWidget {
+class ListScreen extends StatefulWidget {
   const ListScreen({super.key});
+
+  @override
+  _ListScreenState createState() => _ListScreenState();
+}
+
+class _ListScreenState extends State<ListScreen> {
+  late Future<List<dynamic>> _movies;
+
+  @override
+  void initState() {
+    super.initState();
+    _movies = MovieService().fetchPopularMovies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +56,27 @@ class ListScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('List Screen Content'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/details');
+      body: FutureBuilder<List<dynamic>>(
+        future: _movies,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            final movies = snapshot.data!;
+            return ListView.builder(
+              itemCount: movies.length,
+              itemBuilder: (context, index) {
+                final movie = movies[index];
+                return ListTile(
+                  title: Text(movie['title']),
+                  subtitle: Text(movie['overview']),
+                );
               },
-              child: const Text('Go to Details Screen'),
-            ),
-          ],
-        ),
+            );
+          }
+        },
       ),
     );
   }
