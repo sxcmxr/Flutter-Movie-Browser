@@ -72,6 +72,13 @@ class _ListScreenState extends State<ListScreen> {
                 return ListTile(
                   title: Text(movie['title']),
                   subtitle: Text(movie['overview']),
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/details',
+                      arguments: movie,
+                    );
+                  },
                 );
               },
             );
