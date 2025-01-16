@@ -70,8 +70,13 @@ class _ListScreenState extends State<ListScreen> {
               itemBuilder: (context, index) {
                 final movie = movies[index];
                 return ListTile(
+                  leading: Image.network(
+                    'https://image.tmdb.org/t/p/w500${movie['poster_path']}',
+                    width: 50,
+                    fit: BoxFit.cover,
+                  ),
                   title: Text(movie['title']),
-                  subtitle: Text(movie['overview']),
+                  subtitle: Text('Rating: ${movie['vote_average']}'),
                   onTap: () {
                     Navigator.pushNamed(
                       context,
