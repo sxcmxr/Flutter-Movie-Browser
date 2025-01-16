@@ -4,6 +4,8 @@ import 'screens/home_screen.dart';
 import 'screens/details_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/list_screen.dart';
+import 'screens/registration_screen.dart';
+import 'screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
@@ -26,12 +28,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         '/': (context) => const HomeScreen(),
         '/details': (context) => const DetailsScreen(),
         '/settings': (context) => const SettingsScreen(),
         '/list': (context) => const ListScreen(),
+        '/register': (context) => const RegistrationScreen(),
+        '/login': (context) => const LoginScreen(),
       },
     );
   }
