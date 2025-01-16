@@ -9,8 +9,52 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Settings Screen'),
       ),
-      body: const Center(
-        child: Text('Settings Screen Content'),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.deepPurple,
+              ),
+              child: Text(
+                'Navigation Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home Screen'),
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.list),
+              title: const Text('List Screen'),
+              onTap: () {
+                Navigator.pushNamed(context, '/list');
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('Settings Screen Content'),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/details');
+              },
+              child: const Text('Go to Details Screen'),
+            ),
+          ],
+        ),
       ),
     );
   }
