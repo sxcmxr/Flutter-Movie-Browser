@@ -46,15 +46,8 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text('Settings Screen Content'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/details');
-              },
-              child: const Text('Go to Details Screen'),
-            ),
             SwitchListTile(
               title: const Text('Dark Mode'),
               value: Provider.of<ThemeProvider>(context).isDarkMode,

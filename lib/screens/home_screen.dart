@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.list),
-              title: const Text('List Screen'),
+              title: const Text('Popular Movies'),
               onTap: () {
                 Navigator.pushNamed(context, '/list');
               },
@@ -42,27 +42,30 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/list');
-              },
-              child: const Text('Go to List Screen'),
+            Text(
+              'Welcome to Flutter Movie Browser',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/settings');
-              },
-              child: const Text('Go to Settings Screen'),
+            const SizedBox(height: 16.0),
+            Text(
+              'Discover the most popular movies currently trending. '
+              'Browse through the list of movies and get detailed information about each one.',
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/details');
-              },
-              child: const Text('Go to Details Screen'),
+            const SizedBox(height: 32.0),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/list');
+                },
+                child: const Text('Browse Popular Movies'),
+              ),
             ),
           ],
         ),
